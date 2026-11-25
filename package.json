@@ -14,7 +14,7 @@
   },
   "type": "module",
   "bin": {
-    "css-twins": "./dist/cli.js"
+    "css-twins": "dist/cli.js"
   },
   "exports": {
     ".": {
