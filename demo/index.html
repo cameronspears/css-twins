@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>css-twins demo</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #fff;
+        --text: #222;
+        --muted: #777;
+        --rule: #e6e6e6;
+        --code: #f6f6f6;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #111;
+          --text: #ddd;
+          --muted: #888;
+          --rule: #2a2a2a;
+          --code: #1a1a1a;
+        }
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font: 17px/1.65 system-ui, sans-serif;
+      }
+      main {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 48px 20px 160px;
+      }
+      h1 {
+        font-size: 22px;
+        margin: 0 0 4px;
+      }
+      h2 {
+        font-size: 17px;
+        margin: 40px 0 8px;
+      }
+      h3 {
+        font-size: 17px;
+        font-weight: normal;
+        margin: 16px 0 4px;
+      }
+      p {
+        margin: 0 0 16px;
+      }
+      a {
+        color: inherit;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      code {
+        font: 14px ui-monospace, Menlo, monospace;
+      }
+      ol li {
+        margin-bottom: 8px;
+      }
+      ul {
+        margin: 0 0 8px;
+        padding-left: 20px;
+      }
+      .controls {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px 20px;
+        margin: 40px 0 12px;
+      }
+      .controls label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      output {
+        font-variant-numeric: tabular-nums;
+      }
+      button {
+        font: 14px ui-monospace, Menlo, monospace;
+        padding: 6px 10px;
+        background: var(--bg);
+        color: var(--text);
+        border: 1px solid var(--rule);
+        cursor: pointer;
+      }
+      .panes {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 32px;
+        align-items: start;
+      }
+      @media (max-width: 760px) {
+        .panes {
+          grid-template-columns: 1fr;
+        }
+      }
+      textarea {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        height: 600px;
+        margin: 0 0 8px;
+        padding: 12px 14px;
+        background: var(--code);
+        color: var(--text);
+        border: 1px solid var(--rule);
+        font: 13px/1.55 ui-monospace, Menlo, monospace;
+        white-space: pre;
+        tab-size: 2;
+        resize: vertical;
+      }
+      .panes .muted {
+        font-size: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>css-twins</h1>
+      <p class="muted">
+        Edit the CSS below and the report next to it updates. It runs the real analyzer in your
+        browser, so nothing is sent anywhere.
+        <a href="https://github.com/cameronspears/css-twins">Source on GitHub</a>.
+      </p>
+
+      <h2>Try this</h2>
+      <ol>
+        <li>
+          Change <code>18px</code> to <code>16px</code> in <code>.ctaButton</code>. The two buttons
+          go from 98% to 100% alike.
+        </li>
+        <li>
+          Change <code>160ms</code> to <code>150ms</code> in <code>.ctaButton</code>. The stray
+          timing goes away.
+        </li>
+        <li>
+          Drag the slider to 95%. The cards are only 94% alike, so they drop out of the report.
+        </li>
+        <li>
+          <code>fade-in</code> and <code>appear</code> are written differently but do the same
+          thing, so they count as 100% alike.
+        </li>
+        <li>Paste in your own CSS. Start each file with a <code>/* @file name.css */</code> line.</li>
+      </ol>
+
+      <div class="controls">
+        <label>
+          How alike to count
+          <input id="threshold" type="range" min="0.5" max="1" step="0.05" value="0.8" />
+          <output id="threshold-value">80%</output>
+        </label>
+        <button id="reset" type="button">Reset</button>
+      </div>
+
+      <div class="panes">
+        <div>
+          <textarea id="css" spellcheck="false" aria-label="CSS to check"></textarea>
+          <p class="muted">
+            Files with <code>:root</code> tokens hold your shared classes, so copies elsewhere get
+            pointed at them.
+          </p>
+        </div>
+        <section id="report" aria-live="polite"></section>
+      </div>
+    </main>
+    <script type="module" src="./playground.js"></script>
+  </body>
+</html>

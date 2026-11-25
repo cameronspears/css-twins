@@ -1,0 +1,63 @@
+{
+  "name": "css-twins",
+  "version": "0.1.0",
+  "description": "Finds near-copies in your CSS: animations that do the same thing, timings a few ms apart, buttons and cards that are almost the same.",
+  "license": "MIT",
+  "author": "Cameron Spears",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cameronspears/css-twins.git"
+  },
+  "homepage": "https://github.com/cameronspears/css-twins#readme",
+  "bugs": {
+    "url": "https://github.com/cameronspears/css-twins/issues"
+  },
+  "type": "module",
+  "bin": {
+    "css-twins": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "build:demo": "esbuild demo/playground.ts --bundle --format=esm --platform=browser --minify --outfile=demo/playground.js",
+    "demo": "pnpm build:demo && python3 -m http.server 4175"
+  },
+  "keywords": [
+    "css",
+    "design-system",
+    "duplicates",
+    "lint",
+    "audit",
+    "postcss",
+    "css-modules",
+    "animation"
+  ],
+  "engines": {
+    "node": ">=20.12"
+  },
+  "publishConfig": {
+    "provenance": true,
+    "access": "public"
+  },
+  "packageManager": "pnpm@10.20.0",
+  "dependencies": {
+    "postcss": "^8.5.6"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "esbuild": "^0.28.2",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  }
+}

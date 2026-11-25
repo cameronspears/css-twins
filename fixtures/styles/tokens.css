@@ -1,0 +1,45 @@
+:root {
+  --radius: 10px;
+  --control-height: 40px;
+  --fast: 150ms;
+  --base: 200ms;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.btn {
+  height: var(--control-height);
+  padding: 0 16px;
+  border-radius: var(--radius);
+  background: #2563eb;
+  color: #fff;
+  font-weight: 600;
+  transition: background var(--fast) var(--ease-out);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:focus-visible {
+  outline: 2px solid #2563eb;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

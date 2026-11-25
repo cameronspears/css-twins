@@ -1,0 +1,29 @@
+.ctaButton {
+  height: 40px;
+  padding: 0 18px;
+  border-radius: 10px;
+  background: #2563eb;
+  color: #fff;
+  font-weight: 600;
+  transition: background 160ms ease-out;
+}
+
+.ctaButton:active {
+  transform: scale(0.95);
+}
+
+.menu {
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.12);
+  animation: appear var(--base) var(--ease-out);
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
